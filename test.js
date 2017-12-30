@@ -1,25 +1,23 @@
-import objectorarray from './'
+var test = require('tape')
+var objectorarray = require('./')
 
-describe('objectorarray', () => {
-  it('Those should be true', () => {
-    expect(objectorarray({})).toBe(true)
-    expect(objectorarray([])).toBe(true)
-    expect(objectorarray(Object.create({}))).toBe(true)
-    expect(objectorarray(Object.create(Object.prototype))).toBe(true)
-    expect(objectorarray(Object.create(null))).toBe(true)
-    expect(objectorarray(new Foo)).toBe(true)
+test('objectorarray', t => {
+  t.plan(12)
 
-    function Foo (bar) {
-      this.bar = bar
-    }
-  })
+  t.ok(objectorarray({}))
+  t.ok(objectorarray([]))
+  t.ok(objectorarray(Object.create({})))
+  t.ok(objectorarray(Object.create(Object.prototype)))
+  t.ok(objectorarray(Object.create(null)))
+  t.ok(objectorarray(new Foo))
+  function Foo (bar) {
+    this.bar = bar
+  }
 
-  it('Those should be false', () => {
-    expect(objectorarray()).toBe(false)
-    expect(objectorarray(function () {})).toBe(false)
-    expect(objectorarray(1)).toBe(false)
-    expect(objectorarray(/foo/)).toBe(false)
-    expect(objectorarray(null)).toBe(false)
-    expect(objectorarray(undefined)).toBe(false)
-  })
+  t.notOk(objectorarray())
+  t.notOk(objectorarray(function () {}))
+  t.notOk(objectorarray(1))
+  t.notOk(objectorarray(/foo/))
+  t.notOk(objectorarray(null))
+  t.notOk(objectorarray(undefined))
 })
