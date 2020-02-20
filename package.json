@@ -22,7 +22,7 @@
     "url": "https://github.com/ZhouHansen/objectnotnull/issues"
   },
   "homepage": "https://github.com/ZhouHansen/objectnotnull#readme",
-  "dependencies": {
+  "devDependencies": {
     "tape": "^4.8.0"
   }
 }
